@@ -1,7 +1,8 @@
-package git.jbredwards.well.common.block;
+package cubicoder.block;
 
 import com.google.common.collect.ImmutableList;
-import git.jbredwards.well.common.util.AxisAlignedBBRotated;
+
+import cubicoder.util.AxisAlignedBBRotated;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.util.EnumFacing;
 import net.minecraft.util.math.AxisAlignedBB;

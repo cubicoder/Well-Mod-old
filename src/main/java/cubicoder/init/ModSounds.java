@@ -1,4 +1,4 @@
-package git.jbredwards.well.common.init;
+package cubicoder.init;
 
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.SoundEvent;

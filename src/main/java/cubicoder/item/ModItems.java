@@ -1,10 +1,12 @@
-package git.jbredwards.well.common.init;
+package cubicoder.item;
 
-import git.jbredwards.well.common.item.ItemBlockColoredWell;
 import net.minecraft.item.EnumDyeColor;
 import net.minecraft.item.ItemBlock;
 
 import javax.annotation.Nonnull;
+
+import cubicoder.block.ModBlocks;
+
 import java.util.ArrayList;
 import java.util.List;
 

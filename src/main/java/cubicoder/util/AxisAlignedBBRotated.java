@@ -1,4 +1,4 @@
-package git.jbredwards.well.common.util;
+package cubicoder.util;
 
 import net.minecraft.util.EnumFacing;
 import net.minecraft.util.math.*;

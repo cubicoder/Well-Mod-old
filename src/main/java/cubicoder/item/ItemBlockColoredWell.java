@@ -1,6 +1,5 @@
-package git.jbredwards.well.common.item;
+package cubicoder.item;
 
-import git.jbredwards.well.common.init.ModItems;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockCauldron;
 import net.minecraft.block.state.IBlockState;

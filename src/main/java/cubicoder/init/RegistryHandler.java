@@ -1,8 +1,5 @@
-package git.jbredwards.well.common.init;
+package cubicoder.init;
 
-import git.jbredwards.well.client.block.model.ModelWellFluid;
-import git.jbredwards.well.common.block.BlockWell;
-import git.jbredwards.well.common.tileentity.TileEntityWell;
 import net.minecraft.block.Block;
 import net.minecraft.client.renderer.block.model.ModelResourceLocation;
 import net.minecraft.item.Item;
@@ -22,6 +19,13 @@ import net.minecraftforge.oredict.OreDictionary;
 
 import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
+
+import cubicoder.block.BlockWell;
+import cubicoder.block.ModBlocks;
+import cubicoder.client.block.model.ModelWellFluid;
+import cubicoder.item.ModItems;
+import cubicoder.tileentity.TileEntityWell;
+
 import java.util.Objects;
 
 /**

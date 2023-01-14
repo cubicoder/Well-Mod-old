@@ -1,4 +1,4 @@
-package git.jbredwards.well.common.block;
+package cubicoder.block;
 
 import net.minecraftforge.common.property.IUnlistedProperty;
 import net.minecraftforge.fluids.FluidStack;

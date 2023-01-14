@@ -1,8 +1,5 @@
-package git.jbredwards.well.client.block.model;
+package cubicoder.client.block.model;
 
-import git.jbredwards.well.common.block.BlockWell;
-import git.jbredwards.well.common.block.FluidUnlistedProperty;
-import git.jbredwards.well.common.config.ConfigHandler;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.client.renderer.block.model.BakedQuad;
 import net.minecraft.client.renderer.block.model.IBakedModel;
@@ -27,6 +24,11 @@ import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
 import javax.vecmath.Quat4f;
 import javax.vecmath.Vector3f;
+
+import cubicoder.block.BlockWell;
+import cubicoder.block.FluidUnlistedProperty;
+import cubicoder.config.ConfigHandler;
+
 import java.util.Collections;
 import java.util.List;
 import java.util.function.Function;

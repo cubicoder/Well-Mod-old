@@ -1,4 +1,4 @@
-package git.jbredwards.well.common.config;
+package cubicoder.config;
 
 import net.minecraft.nbt.*;
 import net.minecraft.util.ResourceLocation;

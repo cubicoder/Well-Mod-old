@@ -1,6 +1,5 @@
-package git.jbredwards.well.common.tileentity;
+package cubicoder.tileentity;
 
-import git.jbredwards.well.common.config.ConfigHandler;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.network.NetworkManager;
@@ -18,6 +17,9 @@ import net.minecraftforge.fluids.capability.CapabilityFluidHandler;
 
 import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
+
+import cubicoder.config.ConfigHandler;
+
 import java.util.function.Consumer;
 
 /**
