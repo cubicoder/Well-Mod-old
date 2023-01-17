@@ -1,22 +1,17 @@
 package cubicoder.well.block;
 
-import java.util.ArrayList;
-import java.util.List;
-
-import cubicoder.well.Main;
+import cubicoder.well.WellMod;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.material.Material;
 import net.minecraft.world.level.material.MaterialColor;
-import net.minecraftforge.eventbus.api.IEventBus;
 import net.minecraftforge.fml.javafmlmod.FMLJavaModLoadingContext;
 import net.minecraftforge.registries.DeferredRegister;
 import net.minecraftforge.registries.ForgeRegistries;
 import net.minecraftforge.registries.RegistryObject;
 
 public class ModBlocks {
-	public static final List<WellBlock> INIT = new ArrayList<>();
 
-	public static final DeferredRegister<Block> BLOCKS = DeferredRegister.create(ForgeRegistries.BLOCKS, Main.MODID);
+	public static final DeferredRegister<Block> BLOCKS = DeferredRegister.create(ForgeRegistries.BLOCKS, WellMod.MODID);
 
 	public static final RegistryObject<Block> WELL             = BLOCKS.register("well", () -> new WellBlock(Material.STONE, MaterialColor.COLOR_RED));
 	public static final RegistryObject<Block> WHITE_WELL       = BLOCKS.register("white_well", () -> new WellBlock(Material.STONE, MaterialColor.SNOW));
@@ -37,7 +32,6 @@ public class ModBlocks {
 	public static final RegistryObject<Block> BLACK_WELL       = BLOCKS.register("black_well", () -> new WellBlock(Material.STONE, MaterialColor.COLOR_BLACK));
 	
 	public static void init() {
-        IEventBus bus = FMLJavaModLoadingContext.get().getModEventBus();
-        BLOCKS.register(bus);
+        BLOCKS.register(FMLJavaModLoadingContext.get().getModEventBus());
     }
 }

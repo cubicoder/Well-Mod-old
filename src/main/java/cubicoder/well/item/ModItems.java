@@ -1,53 +1,45 @@
 package cubicoder.well.item;
 
-import java.util.ArrayList;
-import java.util.List;
-
-import javax.annotation.Nonnull;
-
+import cubicoder.well.WellMod;
 import cubicoder.well.block.ModBlocks;
-import net.minecraft.item.EnumDyeColor;
 import net.minecraft.world.item.BlockItem;
+import net.minecraft.world.item.CreativeModeTab;
+import net.minecraft.world.item.Item;
+import net.minecraft.world.level.block.Block;
+import net.minecraftforge.fml.javafmlmod.FMLJavaModLoadingContext;
+import net.minecraftforge.registries.DeferredRegister;
+import net.minecraftforge.registries.ForgeRegistries;
+import net.minecraftforge.registries.RegistryObject;
 
-/**
- *
- * @author jbred
- *
- */
-public final class ModItems
-{
-    @Nonnull public static final List<BlockItem> INIT = new ArrayList<>();
+public final class ModItems {
 
-    @Nonnull public static final BlockItem WELL = register("well", new BlockItem(ModBlocks.WELL));
-    @Nonnull public static final BlockItem WHITE_WELL      = register(0);
-    @Nonnull public static final BlockItem ORANGE_WELL     = register(1);
-    @Nonnull public static final BlockItem MAGENTA_WELL    = register(2);
-    @Nonnull public static final BlockItem LIGHT_BLUE_WELL = register(3);
-    @Nonnull public static final BlockItem YELLOW_WELL     = register(4);
-    @Nonnull public static final BlockItem LIME_WELL       = register(5);
-    @Nonnull public static final BlockItem PINK_WELL       = register(6);
-    @Nonnull public static final BlockItem GRAY_WELL       = register(7);
-    @Nonnull public static final BlockItem SILVER_WELL     = register(8);
-    @Nonnull public static final BlockItem CYAN_WELL       = register(9);
-    @Nonnull public static final BlockItem PURPLE_WELL     = register(10);
-    @Nonnull public static final BlockItem BLUE_WELL       = register(11);
-    @Nonnull public static final BlockItem BROWN_WELL      = register(12);
-    @Nonnull public static final BlockItem GREEN_WELL      = register(13);
-    @Nonnull public static final BlockItem RED_WELL        = register(14);
-    @Nonnull public static final BlockItem BLACK_WELL      = register(15);
+	public static final DeferredRegister<Item> ITEMS = DeferredRegister.create(ForgeRegistries.ITEMS, WellMod.MODID);
+	
+	public static final RegistryObject<BlockItem> WELL = fromBlock(ModBlocks.WELL);
+	public static final RegistryObject<BlockItem> WHITE_WELL = fromBlock(ModBlocks.WHITE_WELL);
+	public static final RegistryObject<BlockItem> ORANGE_WELL = fromBlock(ModBlocks.ORANGE_WELL);
+	public static final RegistryObject<BlockItem> MAGENTA_WELL = fromBlock(ModBlocks.MAGENTA_WELL);
+	public static final RegistryObject<BlockItem> LIGHT_BLUE_WELL = fromBlock(ModBlocks.LIGHT_BLUE_WELL);
+	public static final RegistryObject<BlockItem> YELLOW_WELL = fromBlock(ModBlocks.YELLOW_WELL);
+	public static final RegistryObject<BlockItem> LIME_WELL = fromBlock(ModBlocks.LIME_WELL);
+	public static final RegistryObject<BlockItem> PINK_WELL = fromBlock(ModBlocks.PINK_WELL);
+	public static final RegistryObject<BlockItem> GRAY_WELL = fromBlock(ModBlocks.GRAY_WELL);
+	public static final RegistryObject<BlockItem> LIGHT_GRAY_WELL = fromBlock(ModBlocks.LIGHT_GRAY_WELL);
+	public static final RegistryObject<BlockItem> CYAN_WELL = fromBlock(ModBlocks.CYAN_WELL);
+	public static final RegistryObject<BlockItem> PURPLE_WELL = fromBlock(ModBlocks.PURPLE_WELL);
+	public static final RegistryObject<BlockItem> BLUE_WELL = fromBlock(ModBlocks.BLUE_WELL);
+	public static final RegistryObject<BlockItem> BROWN_WELL = fromBlock(ModBlocks.BROWN_WELL);
+	public static final RegistryObject<BlockItem> GREEN_WELL = fromBlock(ModBlocks.GREEN_WELL);
+	public static final RegistryObject<BlockItem> RED_WELL = fromBlock(ModBlocks.RED_WELL);
+	public static final RegistryObject<BlockItem> BLACK_WELL = fromBlock(ModBlocks.BLACK_WELL);
 
-    @Nonnull
-    static BlockItem register(@Nonnull String name, @Nonnull BlockItem item) {
-        item.setRegistryName("well", name).setTranslationKey("well." + name);
-        INIT.add(item);
-        return item;
+	public static void init() {
+        ITEMS.register(FMLJavaModLoadingContext.get().getModEventBus());
     }
-
-    @Nonnull
-    static BlockItem register(int index) {
-        return register(
-                EnumDyeColor.byMetadata(index).getName() + "_well",
-                new BlockItemColoredWell(ModBlocks.INIT.get(index + 1))
-        );
-    }
+	
+	private static RegistryObject<BlockItem> fromBlock(RegistryObject<Block> block) {
+		return ITEMS.register(block.getId().getPath(), () -> new BlockItem(block.get(), 
+				new Item.Properties().tab(CreativeModeTab.TAB_DECORATIONS)));
+	}
+	
 }

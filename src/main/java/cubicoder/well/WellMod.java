@@ -1,15 +1,20 @@
 package cubicoder.well;
 
+import cubicoder.well.block.ModBlocks;
+import cubicoder.well.item.ModItems;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.event.lifecycle.FMLCommonSetupEvent;
 import net.minecraftforge.fml.javafmlmod.FMLJavaModLoadingContext;
 
-@Mod(Main.MODID)
-public final class Main {
+@Mod(WellMod.MODID)
+public final class WellMod {
 	
 	public static final String MODID = "well";
 
-	public Main() {
+	public WellMod() {
+		ModBlocks.init();
+		ModItems.init();
+		
 		FMLJavaModLoadingContext.get().getModEventBus().addListener(this::setup);
 	}
 
