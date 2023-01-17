@@ -25,7 +25,7 @@ public class ItemBlockColoredWell extends BlockItem {
 				if (level > 0) {
 					context.getPlayer().getItemInHand(context.getHand()).shrink(1);
 					context.getPlayer().awardStat(Stats.USE_CAULDRON);
-					ItemHandlerHelper.giveItemToPlayer(context.getPlayer(), new ItemStack(ModItems.WELL));
+					ItemHandlerHelper.giveItemToPlayer(context.getPlayer(), new ItemStack(ModItems.WELL.get()));
 					LayeredCauldronBlock.lowerFillLevel(state, context.getLevel(), context.getClickedPos());
 				}
 			}
