@@ -1,4 +1,4 @@
-package cubicoder.init;
+package cubicoder.well.init;
 
 import net.minecraft.block.Block;
 import net.minecraft.client.renderer.block.model.ModelResourceLocation;
@@ -20,11 +20,11 @@ import net.minecraftforge.oredict.OreDictionary;
 import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
 
-import cubicoder.block.BlockWell;
-import cubicoder.block.ModBlocks;
-import cubicoder.client.block.model.ModelWellFluid;
-import cubicoder.item.ModItems;
-import cubicoder.tileentity.TileEntityWell;
+import cubicoder.well.block.WellBlock;
+import cubicoder.well.block.ModBlocks;
+import cubicoder.well.block.entity.WellBlockEntity;
+import cubicoder.well.client.block.model.ModelWellFluid;
+import cubicoder.well.item.ModItems;
 
 import java.util.Objects;
 
@@ -39,7 +39,7 @@ public final class RegistryHandler
     @SubscribeEvent
     static void registerBlocks(@Nonnull RegistryEvent.Register<Block> event) {
         ModBlocks.INIT.forEach(event.getRegistry()::register);
-        TileEntity.register("well:well", TileEntityWell.class);
+        TileEntity.register("well:well", WellBlockEntity.class);
     }
 
     @SubscribeEvent
@@ -67,8 +67,8 @@ public final class RegistryHandler
         event.getBlockColors().registerBlockColorHandler((state, world, pos, tintIndex) -> {
             if(world != null && pos != null) {
                 final @Nullable TileEntity tile = world.getTileEntity(pos);
-                if(tile instanceof TileEntityWell) {
-                    final @Nullable FluidStack fluid = ((TileEntityWell)tile).tank.getFluid();
+                if(tile instanceof WellBlockEntity) {
+                    final @Nullable FluidStack fluid = ((WellBlockEntity)tile).tank.getFluid();
                     if(fluid != null && fluid.getFluid().canBePlacedInWorld()) {
                         return event.getBlockColors().colorMultiplier(
                                 fluid.getFluid().getBlock().getDefaultState(),
@@ -79,6 +79,6 @@ public final class RegistryHandler
 
             return -1;
         },
-        ModBlocks.INIT.toArray(new BlockWell[0]));
+        ModBlocks.INIT.toArray(new WellBlock[0]));
     }
 }

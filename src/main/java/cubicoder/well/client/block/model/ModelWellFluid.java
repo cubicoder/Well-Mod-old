@@ -1,4 +1,4 @@
-package cubicoder.client.block.model;
+package cubicoder.well.client.block.model;
 
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.client.renderer.block.model.BakedQuad;
@@ -25,9 +25,9 @@ import javax.annotation.Nullable;
 import javax.vecmath.Quat4f;
 import javax.vecmath.Vector3f;
 
-import cubicoder.block.BlockWell;
-import cubicoder.block.FluidUnlistedProperty;
-import cubicoder.config.ConfigHandler;
+import cubicoder.well.block.WellBlock;
+import cubicoder.well.block.FluidUnlistedProperty;
+import cubicoder.well.config.ConfigHandler;
 
 import java.util.Collections;
 import java.util.List;
@@ -65,7 +65,7 @@ public enum ModelWellFluid implements IModel
             if(state instanceof IExtendedBlockState && side == EnumFacing.UP) {
                 final @Nullable FluidStack fluid = ((IExtendedBlockState)state).getValue(FluidUnlistedProperty.INSTANCE);
                 if(fluid != null) {
-                    final boolean isUpsideDown = state.getValue(BlockWell.UPSIDE_DOWN);
+                    final boolean isUpsideDown = state.getValue(WellBlock.UPSIDE_DOWN);
                     final float height = ConfigHandler.getRenderedFluidHeight(fluid, isUpsideDown);
 
                     return Collections.singletonList(ItemTextureQuadConverter.genQuad(format,

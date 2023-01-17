@@ -1,33 +1,34 @@
-package cubicoder.tileentity;
+package cubicoder.well.block.entity;
 
+import java.util.function.Consumer;
+
+import javax.annotation.Nonnull;
+import javax.annotation.Nullable;
+
+import com.mojang.math.Constants;
+
+import cubicoder.well.config.ConfigHandler;
 import net.minecraft.block.state.IBlockState;
+import net.minecraft.core.BlockPos;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.network.NetworkManager;
 import net.minecraft.network.play.server.SPacketUpdateTileEntity;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.EnumFacing;
 import net.minecraft.util.ITickable;
-import net.minecraft.util.math.BlockPos;
-import net.minecraft.world.biome.Biome;
+import net.minecraft.world.level.biome.Biome;
+import net.minecraft.world.level.block.entity.BlockEntity;
 import net.minecraftforge.common.capabilities.Capability;
-import net.minecraftforge.common.util.Constants;
 import net.minecraftforge.fluids.FluidStack;
-import net.minecraftforge.fluids.FluidTank;
 import net.minecraftforge.fluids.capability.CapabilityFluidHandler;
-
-import javax.annotation.Nonnull;
-import javax.annotation.Nullable;
-
-import cubicoder.config.ConfigHandler;
-
-import java.util.function.Consumer;
+import net.minecraftforge.fluids.capability.templates.FluidTank;
 
 /**
  *
  * @author jbred
  *
  */
-public class TileEntityWell extends TileEntity implements ITickable
+public class WellBlockEntity extends BlockEntity implements ITickable
 {
     @Nonnull
     public final FluidTankSynced tank = new FluidTankSynced(this, ConfigHandler.tankCapacity);
@@ -74,19 +75,19 @@ public class TileEntityWell extends TileEntity implements ITickable
         fillTick = world.getTotalWorldTime() + ConfigHandler.getFillDelay(getBiome(), world.rand, isUpsideDown());
     }
 
-    public void countNearbyWells(@Nonnull Consumer<TileEntityWell> updateScript) {
+    public void countNearbyWells(@Nonnull Consumer<WellBlockEntity> updateScript) {
         BlockPos.getAllInBox(pos.add(-15, -15, -15), pos.add(15, 15, 15)).forEach(otherPos -> {
             if(!otherPos.equals(pos) && world.getBiome(otherPos) == getBiome()) {
                 final @Nullable TileEntity tile = world.getTileEntity(otherPos);
-                if(tile instanceof TileEntityWell && isUpsideDown(tile) == isUpsideDown())
-                    updateScript.accept((TileEntityWell)tile);
+                if(tile instanceof WellBlockEntity && isUpsideDown(tile) == isUpsideDown())
+                    updateScript.accept((WellBlockEntity)tile);
             }
         });
     }
 
     public boolean isUpsideDown() { return (getBlockMetadata() >> 1 & 1) == 1; }
     public static boolean isUpsideDown(@Nonnull TileEntity tile) {
-        return tile instanceof TileEntityWell && ((TileEntityWell)tile).isUpsideDown();
+        return tile instanceof WellBlockEntity && ((WellBlockEntity)tile).isUpsideDown();
     }
 
     @Override
@@ -166,7 +167,7 @@ public class TileEntityWell extends TileEntity implements ITickable
         @Override
         public boolean canFillFluidType(@Nonnull FluidStack fluid) {
             //well is upside down, only allow upside down fluids
-            if(TileEntityWell.isUpsideDown(tile)) { if(!fluid.getFluid().isLighterThanAir()) return false; }
+            if(WellBlockEntity.isUpsideDown(tile)) { if(!fluid.getFluid().isLighterThanAir()) return false; }
             //well is not upside down, only allow non upside down fluids
             else if(fluid.getFluid().isLighterThanAir()) return false;
             //no evaporation
@@ -189,7 +190,7 @@ public class TileEntityWell extends TileEntity implements ITickable
         @Nullable
         @Override
         public FluidStack drainInternal(int maxDrain, boolean doDrain) {
-            if(((TileEntityWell)tile).delayUntilNextBucket > 0) return null;
+            if(((WellBlockEntity)tile).delayUntilNextBucket > 0) return null;
             final @Nullable FluidStack resource = super.drainInternal(maxDrain, doDrain);
             if(resource != null && doDrain) {
                 final IBlockState state = tile.getBlockType().getDefaultState();

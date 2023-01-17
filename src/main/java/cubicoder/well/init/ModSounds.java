@@ -1,9 +1,9 @@
-package cubicoder.init;
-
-import net.minecraft.util.ResourceLocation;
-import net.minecraft.util.SoundEvent;
+package cubicoder.well.init;
 
 import javax.annotation.Nonnull;
+
+import net.minecraft.resources.ResourceLocation;
+import net.minecraft.sounds.SoundEvent;
 
 /**
  *

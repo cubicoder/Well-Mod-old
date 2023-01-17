@@ -1,4 +1,4 @@
-package cubicoder.block;
+package cubicoder.well.block;
 
 import net.minecraftforge.common.property.IUnlistedProperty;
 import net.minecraftforge.fluids.FluidStack;

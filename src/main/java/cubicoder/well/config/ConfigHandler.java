@@ -1,4 +1,4 @@
-package cubicoder.config;
+package cubicoder.well.config;
 
 import net.minecraft.nbt.*;
 import net.minecraft.util.ResourceLocation;

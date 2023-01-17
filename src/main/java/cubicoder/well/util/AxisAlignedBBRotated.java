@@ -1,4 +1,4 @@
-package cubicoder.util;
+package cubicoder.well.util;
 
 import net.minecraft.util.EnumFacing;
 import net.minecraft.util.math.*;

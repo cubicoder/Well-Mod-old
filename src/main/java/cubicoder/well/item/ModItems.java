@@ -1,11 +1,11 @@
-package cubicoder.item;
+package cubicoder.well.item;
 
 import net.minecraft.item.EnumDyeColor;
 import net.minecraft.item.ItemBlock;
 
 import javax.annotation.Nonnull;
 
-import cubicoder.block.ModBlocks;
+import cubicoder.well.block.ModBlocks;
 
 import java.util.ArrayList;
 import java.util.List;

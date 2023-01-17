@@ -1,8 +1,8 @@
-package cubicoder.block;
+package cubicoder.well.block;
 
 import com.google.common.collect.ImmutableList;
 
-import cubicoder.util.AxisAlignedBBRotated;
+import cubicoder.well.util.AxisAlignedBBRotated;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.util.EnumFacing;
 import net.minecraft.util.math.AxisAlignedBB;
@@ -105,22 +105,22 @@ public final class WellCollisions
 
     @Nonnull
     public static List<AxisAlignedBB> getTraceBoxList(@Nonnull IBlockState state) {
-        if(state.getValue(BlockWell.UPSIDE_DOWN))
-            return state.getValue(BlockWell.IS_BOTTOM) ? BOTTOM_BB_FLIPPED :
-                    (state.getValue(BlockWell.AXIS) == EnumFacing.Axis.X ? TOP_TRACE_BB_X_FLIPPED : TOP_TRACE_BB_Z_FLIPPED);
+        if(state.getValue(WellBlock.UPSIDE_DOWN))
+            return state.getValue(WellBlock.IS_BOTTOM) ? BOTTOM_BB_FLIPPED :
+                    (state.getValue(WellBlock.AXIS) == EnumFacing.Axis.X ? TOP_TRACE_BB_X_FLIPPED : TOP_TRACE_BB_Z_FLIPPED);
 
-        return state.getValue(BlockWell.IS_BOTTOM) ? BOTTOM_BB :
-                (state.getValue(BlockWell.AXIS) == EnumFacing.Axis.X ? TOP_TRACE_BB_X : TOP_TRACE_BB_Z);
+        return state.getValue(WellBlock.IS_BOTTOM) ? BOTTOM_BB :
+                (state.getValue(WellBlock.AXIS) == EnumFacing.Axis.X ? TOP_TRACE_BB_X : TOP_TRACE_BB_Z);
     }
 
     @Nonnull
     public static List<AxisAlignedBB> getCollisionBoxList(@Nonnull IBlockState state) {
-        if(state.getValue(BlockWell.UPSIDE_DOWN))
-            return state.getValue(BlockWell.IS_BOTTOM) ? BOTTOM_BB_FLIPPED :
-                    (state.getValue(BlockWell.AXIS) == EnumFacing.Axis.X ? TOP_COLLIDE_BB_X_FLIPPED : TOP_COLLIDE_BB_Z_FLIPPED);
+        if(state.getValue(WellBlock.UPSIDE_DOWN))
+            return state.getValue(WellBlock.IS_BOTTOM) ? BOTTOM_BB_FLIPPED :
+                    (state.getValue(WellBlock.AXIS) == EnumFacing.Axis.X ? TOP_COLLIDE_BB_X_FLIPPED : TOP_COLLIDE_BB_Z_FLIPPED);
 
-        return state.getValue(BlockWell.IS_BOTTOM) ? BOTTOM_BB :
-                (state.getValue(BlockWell.AXIS) == EnumFacing.Axis.X ? TOP_COLLIDE_BB_X : TOP_COLLIDE_BB_Z);
+        return state.getValue(WellBlock.IS_BOTTOM) ? BOTTOM_BB :
+                (state.getValue(WellBlock.AXIS) == EnumFacing.Axis.X ? TOP_COLLIDE_BB_X : TOP_COLLIDE_BB_Z);
     }
 
     @Nonnull

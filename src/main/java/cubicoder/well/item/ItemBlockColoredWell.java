@@ -1,4 +1,4 @@
-package cubicoder.item;
+package cubicoder.well.item;
 
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockCauldron;
