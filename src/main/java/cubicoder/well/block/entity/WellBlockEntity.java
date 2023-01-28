@@ -2,6 +2,7 @@ package cubicoder.well.block.entity;
 
 import java.util.function.Consumer;
 
+import cubicoder.well.block.ModBlocks;
 import cubicoder.well.block.WellBlock;
 import cubicoder.well.config.ConfigHandler;
 import net.minecraft.core.BlockPos;
@@ -30,8 +31,7 @@ public class WellBlockEntity extends TileFluidHandler {
 	protected Biome biome;
 	
 	public WellBlockEntity(BlockPos pos, BlockState state) {
-		// TODO BlockEntityType
-		super(null, pos, state);
+		super(ModBlocks.WELL_BE.get(), pos, state);
 		tank = new FluidTankSynced(this, ConfigHandler.tankCapacity);
 	}
 	
