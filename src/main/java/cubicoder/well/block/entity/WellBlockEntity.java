@@ -290,6 +290,10 @@ public class WellBlockEntity extends TileFluidHandler {
 		return super.getCapability(capability, facing);
 	}*/
 
+	public FluidTank getTank() {
+		return tank;
+	}
+	
 	public static class FluidTankSynced extends FluidTank {
 
 		private BlockEntity be;

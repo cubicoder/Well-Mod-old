@@ -250,10 +250,10 @@ public class WellBlock extends Block implements EntityBlock {
 		LazyOptional<IFluidHandler> handler = be.getCapability(CapabilityFluidHandler.FLUID_HANDLER_CAPABILITY, hit.getDirection());
 		if (be instanceof WellBlockEntity && handler != null && handler.isPresent()) {
 			WellBlockEntity well = (WellBlockEntity) be;
-			int prevAmount = well.tank.getFluidAmount();
+			int prevAmount = well.getTank().getFluidAmount();
 			
 			if (FluidUtil.interactWithFluidHandler(player, hand, handler.resolve().get())) {
-				if (ConfigHandler.playSound && prevAmount > well.tank.getFluidAmount()) {
+				if (ConfigHandler.playSound && prevAmount > well.getTank().getFluidAmount()) {
 					level.playSound(null, pos.above(), ModSounds.CRANK, SoundSource.BLOCKS, 0.25F, 1);
 					((WellBlockEntity) be).delayUntilNextBucket = 32;
 				}
@@ -297,7 +297,7 @@ public class WellBlock extends Block implements EntityBlock {
 		if (state.getValue(IS_BOTTOM)) {
 			BlockEntity be = level.getBlockEntity(pos);
 			if (be instanceof WellBlockEntity) {
-				FluidStack fluid = ((WellBlockEntity) be).tank.getFluid();
+				FluidStack fluid = ((WellBlockEntity) be).getTank().getFluid();
 				FluidAttributes fluidAttr = fluid.getFluid().getAttributes();
 				if (fluid != null && fluidAttr.canBePlacedInWorld(be.getLevel(), pos, fluid)) {
 					int baseFluidLight = fluidAttr.getBlock(be.getLevel(), pos, fluid.getFluid().defaultFluidState()).getLightEmission(level, pos);
@@ -481,7 +481,7 @@ public class WellBlock extends Block implements EntityBlock {
 	public void randomTick(BlockState state, ServerLevel level, BlockPos pos, Random random) {
 		BlockEntity be = level.getBlockEntity(pos);
 		if (be instanceof WellBlockEntity) {
-			FluidStack fluid = ((WellBlockEntity) be).tank.getFluid();
+			FluidStack fluid = ((WellBlockEntity) be).getTank().getFluid();
 			if (fluid != null && fluid.getFluid().getAttributes().canBePlacedInWorld(level, pos, fluid)) {
 				float height = ConfigHandler.getRenderedFluidHeight(fluid, false);
 				BlockState fluidState = fluid.getFluid().getAttributes().getBlock(level, pos, fluid.getFluid().defaultFluidState())
