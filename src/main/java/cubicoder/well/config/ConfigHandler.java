@@ -1,26 +1,26 @@
 package cubicoder.well.config;
 
-import net.minecraft.nbt.*;
-import net.minecraft.util.ResourceLocation;
+import java.util.HashMap;
+import java.util.Map;
+import java.util.Random;
+
+import javax.annotation.Nonnull;
+import javax.annotation.Nullable;
+
+import net.minecraft.resources.ResourceLocation;
 import net.minecraft.util.math.MathHelper;
-import net.minecraft.world.World;
-import net.minecraft.world.biome.Biome;
+import net.minecraft.world.level.Level;
+import net.minecraft.world.level.biome.Biome;
+import net.minecraft.world.level.material.Fluid;
 import net.minecraftforge.common.BiomeDictionary;
 import net.minecraftforge.common.config.Config;
 import net.minecraftforge.common.config.ConfigManager;
 import net.minecraftforge.common.util.Constants.NBT;
-import net.minecraftforge.fluids.Fluid;
+import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fluids.FluidRegistry;
 import net.minecraftforge.fluids.FluidStack;
 import net.minecraftforge.fml.client.event.ConfigChangedEvent;
 import net.minecraftforge.fml.common.Mod;
-import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
-
-import javax.annotation.Nonnull;
-import javax.annotation.Nullable;
-import java.util.HashMap;
-import java.util.Map;
-import java.util.Random;
 
 /**
  *
@@ -163,12 +163,12 @@ public final class ConfigHandler
     }
 
     @Nullable
-    public static FluidStack getFillFluid(@Nonnull Biome biome, @Nonnull World world, boolean upsideDown, int nearbyWells) {
+    public static FluidStack getFillFluid(@Nonnull Biome biome, @Nonnull Level level, boolean upsideDown, int nearbyWells) {
         final WellFluidData data = upsideDown
                 ? upWellData.getOrDefault(biome, WellFluidData.UP_DEFAULT)
                 : downWellData.getOrDefault(biome, WellFluidData.DOWN_DEFAULT);
 
-        if(data.fluid.amount <= 0 || world.provider.doesWaterVaporize() && data.fluid.getFluid().doesVaporize(data.fluid))
+        if(data.fluid.amount <= 0 || level.provider.doesWaterVaporize() && data.fluid.getFluid().doesVaporize(data.fluid))
             return null;
 
         final FluidStack fluid = data.fluid.copy();
