@@ -1,7 +1,9 @@
 package cubicoder.well.block;
 
 import cubicoder.well.WellMod;
+import cubicoder.well.block.entity.WellBlockEntity;
 import net.minecraft.world.level.block.Block;
+import net.minecraft.world.level.block.entity.BlockEntityType;
 import net.minecraft.world.level.material.Material;
 import net.minecraft.world.level.material.MaterialColor;
 import net.minecraftforge.fml.javafmlmod.FMLJavaModLoadingContext;
@@ -13,6 +15,8 @@ public class ModBlocks {
 
 	public static final DeferredRegister<Block> BLOCKS = DeferredRegister.create(ForgeRegistries.BLOCKS, WellMod.MODID);
 
+	public static final DeferredRegister<BlockEntityType<?>> BLOCK_ENTITIES = DeferredRegister.create(ForgeRegistries.BLOCK_ENTITIES, WellMod.MODID);
+	
 	public static final RegistryObject<Block> WELL             = BLOCKS.register("well", () -> new WellBlock(Material.STONE, MaterialColor.COLOR_RED));
 	public static final RegistryObject<Block> WHITE_WELL       = BLOCKS.register("white_well", () -> new WellBlock(Material.STONE, MaterialColor.SNOW));
 	public static final RegistryObject<Block> ORANGE_WELL      = BLOCKS.register("orange_well", () -> new WellBlock(Material.STONE, MaterialColor.COLOR_ORANGE));
@@ -31,7 +35,11 @@ public class ModBlocks {
 	public static final RegistryObject<Block> RED_WELL         = BLOCKS.register("red_well", () -> new WellBlock(Material.STONE, MaterialColor.COLOR_RED));
 	public static final RegistryObject<Block> BLACK_WELL       = BLOCKS.register("black_well", () -> new WellBlock(Material.STONE, MaterialColor.COLOR_BLACK));
 	
+	public static final RegistryObject<BlockEntityType<?>> WELL_BE = BLOCK_ENTITIES.register("well", 
+			() -> BlockEntityType.Builder.of(WellBlockEntity::new, WELL.get()).build(null));
+	
 	public static void init() {
         BLOCKS.register(FMLJavaModLoadingContext.get().getModEventBus());
+        BLOCK_ENTITIES.register(FMLJavaModLoadingContext.get().getModEventBus());
     }
 }
