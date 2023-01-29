@@ -56,6 +56,7 @@ public class WellBlock extends Block implements EntityBlock {
 
 	//public static final EnumProperty<Axis> AXIS = EnumProperty.create("axis", Axis.class, Axis::isHorizontal);
 	public static final EnumProperty<Direction.Axis> AXIS = BlockStateProperties.HORIZONTAL_AXIS;
+	// TODO change to EnumProperty<DoubleBlockHalf> HALF = BlockStateProperties.DOUBLE_BLOCK_HALF
 	public static final BooleanProperty IS_BOTTOM = BooleanProperty.create("is_bottom");
 	public static final BooleanProperty UPSIDE_DOWN = BooleanProperty.create("upside_down");
 
